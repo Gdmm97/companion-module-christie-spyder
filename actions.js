@@ -10,8 +10,10 @@ function colorToRGB(color) {
 // ── Dynamic choice helpers ──────────────────────────────────────────────────
 
 function getLayerChoices(self) {
-	const count = self._lastLayerCount || 0
-	if (!count) return [{ id: '2', label: 'Layer 1 – connecting…' }]
+	// Fall back to a full range (16) before the real layer count is known, so
+	// action defaults (e.g. layer '2', '3') always match a choice — otherwise
+	// Companion renders unmatched defaults as "undefined" until the field is refocused.
+	const count = self._lastLayerCount || 16
 	return Array.from({ length: count }, (_, i) => {
 		const layerId = i + 2
 		return { id: String(layerId), label: `Layer ${i + 1}` }
