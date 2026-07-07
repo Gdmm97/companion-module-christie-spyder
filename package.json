@@ -1,10 +1,12 @@
 {
 	"name": "christie-spyder",
-	"version": "2.3.0",
+	"version": "2.3.60",
 	"main": "spyder.js",
 	"type": "module",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "companion-module-build && mv pkg.tgz pkg/${npm_package_name}-${npm_package_version}.tgz",
+		"dev": "npx webpack -c node_modules/@companion-module/tools/webpack.config.cjs --env ROOT=$PWD --env dev --watch"
 	},
 	"license": "MIT",
 	"dependencies": {
